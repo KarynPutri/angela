@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For You, My Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #ffe6e6;
+      font-family: 'Quicksand', sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .page {
+      display: none;
+      background: #fff0f5;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2em;
+      color: #e60073;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1em;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      font-size: 1em;
+      width: 80%;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background: #ff66a3;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #ff3385;
+    }
+
+    .heart {
+      font-size: 2em;
+      color: red;
+      animation: pulse 1.5s infinite;
+      margin-top: 10px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slideshow {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      margin-top: 20px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .dots {
+      margin-top: 10px;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 3px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #ff66a3;
+    }
+
+    a.spotify-link {
+      display: inline-block;
+      margin-top: 20px;
+      background: #1db954;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    a.spotify-link:hover {
+      background: #159c40;
+    }
+
+    .small-button {
+  background: #ff99bb;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.9em;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.small-button:hover {
+  background: #ff6699;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto 15px auto;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 10px 38px 10px 10px;
+  font-size: 1em;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.password-wrapper span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #888;
+  user-select: none;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: Password -->
+<div class="page active" id="passwordPage">
+  <h1>Hi Love ❤️</h1>
+  <p>I made a small letter for you...</p>
+  <p>Enter your birthdate (YYYYMMDD)</p>
+  <div class="password-wrapper">
+  <input type="password" id="passwordInput" placeholder="e.g. 20010922" />
+  <span id="togglePassword" onclick="togglePassword()">show</span>
+</div>
+  <br>
+  <button onclick="checkPassword()">Open Letter</button>
+  <p id="errorMessage" style="color:red; margin-top:10px;"></p>
+</div>
+
+  <!-- PAGE 2: Letter -->
+  <div class="page" id="letterPage">
+    <h1>To My Dearest,</h1>
+    <p>
+      I just wanted to say... <br />
+      Thank you for always being there for me. <br />
+      You're more than just a boyfriend — you are my home, my comfort zone, and my favorite person.
+    </p>
+    <p>
+      I'm so proud of you, babe. I know that no matter what happens, we can get through anything as long as we're together. 💪
+    </p>
+
+    <div class="slideshow">
+  <div class="slide active"><img src="https://source.unsplash.com/400x250/?love" alt="Photo 1" /></div>
+  <div class="slide"><img src="https://source.unsplash.com/400x250/?romantic" alt="Photo 2" /></div>
+  <div class="slide"><img src="https://source.unsplash.com/400x250/?couple" alt="Photo 3" /></div>
+  <div class="slide"><img src="https://source.unsplash.com/400x250/?sunset" alt="Photo 4" /></div>
+  <div class="slide"><img src="https://source.unsplash.com/400x250/?hug" alt="Photo 5" /></div>
+    </div>
+    <div class="dots">
+  <span class="dot active" onclick="showSlide(0)"></span>
+  <span class="dot" onclick="showSlide(1)"></span>
+  <span class="dot" onclick="showSlide(2)"></span>
+  <span class="dot" onclick="showSlide(3)"></span>
+  <span class="dot" onclick="showSlide(4)"></span>
+    </div>
+
+    <p class="heart">❤️</p>
+    <button onclick="goToSpotifyPage()">Next Surprise 🎁</button>
+  </div>
+
+ <!-- PAGE 3: Spotify Page -->
+<div class="page" id="spotifyPage">
+  <h1>Your Love Soundtrack 🎶</h1>
+  <p>I made this playlist special for you. <br> Play it whenever you miss me, okay?</p>
+  <a class="spotify-link" href="https://open.spotify.com/playlist/37i9dQZF1DWVrtsSlLKzro" target="_blank">
+    Open on Spotify
+  </a>
+  <p class="heart">❤️</p>
+  <p>Always yours,<br>Angela 🥰</p>
+  <button class="small-button" onclick="goBackToLetter()">← Back to Letter</button>
+</div>
+
+<script>
+  const correctPassword = "20050729"; // Ganti dengan ulang tahun pacarmu
+  const passwordPage = document.getElementById("passwordPage");
+  const letterPage = document.getElementById("letterPage");
+  const spotifyPage = document.getElementById("spotifyPage");
+  const errorMessage = document.getElementById("errorMessage");
+
+  function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    if (input === correctPassword) {
+      passwordPage.classList.remove("active");
+      letterPage.classList.add("active");
+    } else {
+      errorMessage.textContent = "Wrong password, try again 🥺";
+    }
+  }
+
+  function goToSpotifyPage() {
+    letterPage.classList.remove("active");
+    spotifyPage.classList.add("active");
+  }
+
+  function goBackToLetter() {
+    spotifyPage.classList.remove("active");
+    letterPage.classList.add("active");
+  }
+
+  function togglePassword() {
+  const input = document.getElementById("passwordInput");
+  const toggle = document.getElementById("togglePassword");
+
+  if (input.type === "password") {
+    input.type = "text";
+    toggle.textContent = "hide";
+  } else {
+    input.type = "password";
+    toggle.textContent = "show";
+  }
+}
+
+  // Slideshow
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove("active");
+      dots[i].classList.remove("active");
+    });
+    slides[index].classList.add("active");
+    dots[index].classList.add("active");
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 3500);
+</script>
