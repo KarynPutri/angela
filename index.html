@@ -194,6 +194,26 @@
   user-select: none;
 }
 
+.sakura {
+  position: fixed;
+  top: -10px;
+  z-index: 9999;
+  color: #fcbce2;
+  pointer-events: none;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -213,35 +233,66 @@
 </div>
 
   <!-- PAGE 2: Letter -->
-  <div class="page" id="letterPage">
-    <h1>To My Dearest,</h1>
-    <p>
-      I just wanted to say... <br />
-      Thank you for always being there for me. <br />
-      You're more than just a boyfriend — you are my home, my comfort zone, and my favorite person.
-    </p>
-    <p>
-      I'm so proud of you, babe. I know that no matter what happens, we can get through anything as long as we're together. 💪
-    </p>
+<div class="page" id="letterPage">
+  <h1>ゆうと〜〜〜っ！🎉🎂💞✨</h1>
+  <p>
+    たんじょうびおめでとう〜〜〜〜！！！<br><br>
+    そして、<br>
+    わたしたちの記念日もおめでとう〜〜〜っ！！🎊💑💕<br><br>
 
-    <div class="slideshow">
-  <div class="slide active"><img src="https://source.unsplash.com/400x250/?love" alt="Photo 1" /></div>
-  <div class="slide"><img src="https://source.unsplash.com/400x250/?romantic" alt="Photo 2" /></div>
-  <div class="slide"><img src="https://source.unsplash.com/400x250/?couple" alt="Photo 3" /></div>
-  <div class="slide"><img src="https://source.unsplash.com/400x250/?sunset" alt="Photo 4" /></div>
-  <div class="slide"><img src="https://source.unsplash.com/400x250/?hug" alt="Photo 5" /></div>
-    </div>
-    <div class="dots">
-  <span class="dot active" onclick="showSlide(0)"></span>
-  <span class="dot" onclick="showSlide(1)"></span>
-  <span class="dot" onclick="showSlide(2)"></span>
-  <span class="dot" onclick="showSlide(3)"></span>
-  <span class="dot" onclick="showSlide(4)"></span>
-    </div>
+    ダブルでお祝いできるなんて、超スペシャルな日だねっ(≧∇≦)💗<br>
+    今日は、ケーキも愛も２倍でどうぞ〜🍰💋（笑）<br><br>
 
-    <p class="heart">❤️</p>
-    <button onclick="goToSpotifyPage()">Next Surprise 🎁</button>
+    正直言うとね…<br>
+    初めてゆうとに出会ったとき、<br>
+    こんなふうにお互い大好きになって、<br>
+    一緒に笑って、ふざけて、<br>
+    「だいすき」って言い合う関係になるなんて、<br>
+    ぜんぜん想像してなかったんだよ。<br><br>
+
+    でも今、こうして隣にいてくれてることが、<br>
+    もう奇跡みたいに嬉しい。<br><br>
+
+    ゆうとって、<br>
+    うるさいし（←愛）、意地悪だし（←たまに）、でも優しくて、あったかくて、<br>
+    ほんとにほんとに…世界でいちばん大好きな人です。<br><br>
+
+    これからの未来も、<br>
+    泣いたり、笑ったり、<br>
+    忙しくてもくだらない話して、<br>
+    ずっとずっと一緒にいたい。<br><br>
+
+    おじいちゃんとおばあちゃんになっても、<br>
+    ふたりで手をつないで「バカップル」って言われてたい（笑）👴👵💕<br><br>
+
+    だからね、ゆうと。<br>
+    これからもわたしのそばにいてください。<br>
+    あいしてるよ。<br>
+    ほんとうに、ほんとうに。<br><br>
+
+    世界一ゆうとを愛してる彼女より💌🎀💘<br><br>
+    ゆうと、ずっと一緒にいるね🤍<br>
+    アンジェラ　&lt;3
+  </p>
+
+  <div class="slideshow">
+    <div class="slide active"><img src="https://source.unsplash.com/400x250/?love" alt="Photo 1" /></div>
+    <div class="slide"><img src="https://source.unsplash.com/400x250/?romantic" alt="Photo 2" /></div>
+    <div class="slide"><img src="https://source.unsplash.com/400x250/?couple" alt="Photo 3" /></div>
+    <div class="slide"><img src="https://source.unsplash.com/400x250/?sunset" alt="Photo 4" /></div>
+    <div class="slide"><img src="https://source.unsplash.com/400x250/?hug" alt="Photo 5" /></div>
   </div>
+  <div class="dots">
+    <span class="dot active" onclick="showSlide(0)"></span>
+    <span class="dot" onclick="showSlide(1)"></span>
+    <span class="dot" onclick="showSlide(2)"></span>
+    <span class="dot" onclick="showSlide(3)"></span>
+    <span class="dot" onclick="showSlide(4)"></span>
+  </div>
+
+  <p class="heart">❤️</p>
+  <button onclick="goToSpotifyPage()">Next Surprise 🎁</button>
+</div>
 
  <!-- PAGE 3: Spotify Page -->
 <div class="page" id="spotifyPage">
@@ -294,6 +345,18 @@
     toggle.textContent = "show";
   }
 }
+
+  const totalPetals = 30;
+  for (let i = 0; i < totalPetals; i++) {
+    const petal = document.createElement('div');
+    petal.classList.add('sakura');
+    petal.textContent = '🌸';
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.animationDuration = 5 + Math.random() * 5 + 's';
+    petal.style.opacity = Math.random();
+    petal.style.fontSize = Math.random() * 10 + 10 + 'px';
+    document.body.appendChild(petal);
+  }
 
   // Slideshow
   let currentSlide = 0;
